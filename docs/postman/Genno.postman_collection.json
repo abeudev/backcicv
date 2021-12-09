@@ -1,0 +1,1533 @@
+{
+	"info": {
+		"_postman_id": "ec685782-a427-45fd-9aa0-aee571a79d76",
+		"name": "Genno",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Install",
+			"item": [
+				{
+					"name": "Check Install",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/init",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"init"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Install App",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": {\n        \"username\": \"firsto\",\n        \"firstName\": \"Firsto User\",\n        \"email\": \"first@mail.com\",\n        \"password\": \"12345\",\n        \"avatar\": \"avatar?backgroundType=transparent&backgroundColor=pastelRed&accessoriesType=round&clothesType=overall&clothesColor=white&clothesGraphicsType=skull&eyebrowType=frownNatural&eyesType=happy&facialHairType=beardLight&facialHairColor=brown&mouthType=sad&skinColor=brown&topType=shortHairShortFlat&topColor=white\"\n    },\n    \"role\": {\n        \"name\": \"God Mode\",\n        \"defaultRoleName\": \"Default\",\n        \"permissions\": [\n            {\n                \"title\": \"Home\",\n                \"name\": \"home\",\n                \"requiresAccess\": false\n            },\n            {\n                \"title\": \"User Profile\",\n                \"name\": \"userProfile\",\n                \"requiresAccess\": false\n            }\n        ]\n    },\n    \"siteSettings\": {\n        \"general\": {\n            \"siteTitle\": \"Vaska\"\n        },\n        \"timeAndRegion\": {\n            \"timezone\": \"Japan\"\n        }\n    }\n}"
+						},
+						"url": {
+							"raw": "{{server}}/init",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"init"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sessions",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b3a07c54-2b9d-40d6-8f60-8cabee9bdd3d",
+								"exec": [
+									"pm.environment.set(\"token\", pm.response.json().data.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"genno\",\n\t\"password\": \"genno123\"\n}"
+						},
+						"url": {
+							"raw": "{{server}}/users/login",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b3a07c54-2b9d-40d6-8f60-8cabee9bdd3d",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"User154\",\n    \"email\": \"user154@mail.com\",\n    \"username\": \"user154\",\n    \"password\": \"12345\",\n    \"avatar\": \"avatar?backgroundType=transparent&backgroundColor=blue01&accessoriesType=none&clothesType=graphicShirt&clothesColor=red&clothesGraphicsType=cumbia&eyebrowType=raisedExcitedNatural&eyesType=squint&facialHairType=beardMedium&facialHairColor=brownDark&mouthType=grimace&skinColor=pale&topType=longHairFro&topColor=platinum\"\n}"
+						},
+						"url": {
+							"raw": "{{server}}/users/register",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Activate User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b3a07c54-2b9d-40d6-8f60-8cabee9bdd3d",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{temporaryToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{server}}/users/activate",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"users",
+								"activate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b3a07c54-2b9d-40d6-8f60-8cabee9bdd3d",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@mail.com\"\n}"
+						},
+						"url": {
+							"raw": "{{server}}/users/password/mail",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"users",
+								"password",
+								"mail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b3a07c54-2b9d-40d6-8f60-8cabee9bdd3d",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{temporaryToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"12345\"\n}"
+						},
+						"url": {
+							"raw": "{{server}}/users/password/reset",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"users",
+								"password",
+								"reset"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dashboard",
+			"item": [
+				{
+					"name": "Weekly Login",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/dashboard/weekly-login",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"dashboard",
+								"weekly-login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Today Login",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/dashboard/today-login",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"dashboard",
+								"today-login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Count Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/dashboard/count/users",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"dashboard",
+								"count",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Count Roles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/dashboard/count/roles",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"dashboard",
+								"count",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Count Feeds",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/dashboard/count/feeds",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"dashboard",
+								"count",
+								"feeds"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Count Assets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/dashboard/count/assets",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"dashboard",
+								"count",
+								"assets"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Users Table",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"filter\": {\n        \"$match\": {\n            \"isPending\": false,\n            \"isActive\": true\n        }\n    },\n    \"datatable\": {\n        \"columns\": [\n            {\n                \"data\": \"firstName\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"name\": \"\",\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"username\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"name\": \"\",\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"email\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"name\": \"\",\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"role.name\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"name\": \"\",\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"createdAt\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"name\": \"\",\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"role.level\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"name\": \"\",\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"role._id\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"name\": \"\",\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"lastName\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"name\": \"\",\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"_id\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"name\": \"\",\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            }\n        ],\n        \"order\": [\n            {\n                \"column\": 4,\n                \"dir\": \"desc\"\n            }\n        ],\n        \"start\": 0,\n        \"length\": 25,\n        \"search\": {\n            \"value\": \"\",\n            \"regex\": false\n        }\n    }\n}"
+						},
+						"url": {
+							"raw": "{{server}}/users/table",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"users",
+								"table"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users Pending Table",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"filter\": {\n        \"$match\": {\n            \"isPending\": true\n        }\n    },\n    \"datatable\": {\n        \"columns\": [\n            {\n                \"data\": \"firstName\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"name\": \"\",\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"username\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"name\": \"\",\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"email\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"name\": \"\",\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"role.name\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"name\": \"\",\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"createdAt\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"name\": \"\",\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"role.level\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"name\": \"\",\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"lastName\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"name\": \"\",\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"_id\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"name\": \"\",\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            }\n        ],\n        \"order\": [\n            {\n                \"column\": 4,\n                \"dir\": \"desc\"\n            }\n        ],\n        \"start\": 0,\n        \"length\": 25,\n        \"search\": {\n            \"value\": \"\",\n            \"regex\": false\n        }\n    }\n}"
+						},
+						"url": {
+							"raw": "{{server}}/users/table",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"users",
+								"table"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ffa67b5e-01a5-4044-a5a4-b8d85232ec20",
+								"exec": [
+									"pm.environment.set(\"userId\", pm.response.json().data._id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Haruna\",\n    \"lastName\": \"Ono\",\n    \"username\": \"haruna\",\n    \"email\": \"haruna@mail.com\",\n    \"password\": \"12345\",\n    \"roleID\": \"5f1bf2a5ab6498033a92095c\",\n    \"phone\": \"0123786234\",\n    \"gender\": \"female\",\n    \"address\": {\n        \"country\": 109,\n        \"state\": 1951,\n        \"city\": 24846,\n        \"streetName\": \"Street\"\n    },\n    \"image\": null,\n    \"avatar\": \"avatar?backgroundType=circle&backgroundColor=white&accessoriesType=none&clothesType=overall&clothesColor=pastelYellow&clothesGraphicsType=selena&eyebrowType=updown&eyesType=winkWacky&facialHairType=beardMedium&facialHairColor=blondeGolden&mouthType=serious&skinColor=darkBrown&topType=longHairBigHair&topColor=heather\",\n    \"dateOfBirth\": 651430800000\n}"
+						},
+						"url": {
+							"raw": "{{server}}/users",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e280b698-eb2d-49cf-aa29-0b9312ffe960",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/users/{{userId}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"users",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ffa67b5e-01a5-4044-a5a4-b8d85232ec20",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"_id\": \"{{userId}}\",\n    \"username\": \"haruna\",\n    \"email\": \"haruna@mail.com\",\n    \"address\": {\n        \"country\": 109,\n        \"state\": 1951,\n        \"city\": 24846,\n        \"streetName\": \"Street\"\n    },\n    \"gender\": \"female\",\n    \"phone\": \"0123786234\",\n    \"firstName\": \"Haruna\",\n    \"lastName\": \"Ono\",\n    \"isPending\": false,\n    \"isActive\": true,\n    \"dateOfBirth\": 651430800000,\n    \"avatar\": \"avatar?backgroundType=circle&backgroundColor=white&accessoriesType=none&clothesType=overall&clothesColor=pastelYellow&clothesGraphicsType=selena&eyebrowType=updown&eyesType=winkWacky&facialHairType=beardMedium&facialHairColor=blondeGolden&mouthType=serious&skinColor=darkBrown&topType=longHairBigHair&topColor=heather\",\n    \"useImage\": false,\n    \"roleID\": \"5f1bf2a5ab6498033a92095c\"\n}"
+						},
+						"url": {
+							"raw": "{{server}}/users",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Archive/Activate User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ffa67b5e-01a5-4044-a5a4-b8d85232ec20",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"_id\": \"{{userId}}\",\n    \"isActive\": false\n}"
+						},
+						"url": {
+							"raw": "{{server}}/users",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Activate Pending User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ffa67b5e-01a5-4044-a5a4-b8d85232ec20",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"_id\": \"5f1bfa29ab6498033a920966\",\n    \"isActive\": true,\n    \"isPending\": false\n}"
+						},
+						"url": {
+							"raw": "{{server}}/users",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "My Profile",
+			"item": [
+				{
+					"name": "Get My Profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e280b698-eb2d-49cf-aa29-0b9312ffe960",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/users/my-profile",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"users",
+								"my-profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Profile Image",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e280b698-eb2d-49cf-aa29-0b9312ffe960",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Access-Control-Allow-Origin",
+								"value": "jjj",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/images/5f26494af8a0620010276000.png?v=1598191665856",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"images",
+								"5f26494af8a0620010276000.png"
+							],
+							"query": [
+								{
+									"key": "v",
+									"value": "1598191665856"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update My Profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e280b698-eb2d-49cf-aa29-0b9312ffe960",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"_id\": \"5f1bf2a5ab6498033a92095f\",\n    \"username\": \"userMain\",\n    \"email\": \"userMain@mail.com\",\n    \"address\": {\n        \"country\": 109,\n        \"state\": 1951,\n        \"city\": 24845,\n        \"streetName\": \"Chicken\"\n    },\n    \"gender\": \"male\",\n    \"firstName\": \"User\",\n    \"isPending\": false,\n    \"isActive\": true,\n    \"avatar\": \"avatar?backgroundType=transparent&backgroundColor=red&accessoriesType=prescription01&clothesType=shirtVNeck&clothesColor=blue01&clothesGraphicsType=skull&eyebrowType=angry&eyesType=squint&facialHairType=moustacheFancy&facialHairColor=brownDark&mouthType=smile&skinColor=yellow&topType=hat&topColor=blonde\",\n    \"useImage\": false,\n    \"roleID\": \"5f1bf2a5ab6498033a920959\",\n    \"lastName\": \"Main\",\n    \"dateOfBirth\": 696790800000,\n    \"phone\": \"0127845674\"\n}"
+						},
+						"url": {
+							"raw": "{{server}}/users/my-profile",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"users",
+								"my-profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Avatar",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e280b698-eb2d-49cf-aa29-0b9312ffe960",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"avatar\": \"avatar?backgroundType=transparent&backgroundColor=heather&accessoriesType=prescription01&clothesType=blazerSweater&clothesColor=heather&clothesGraphicsType=cumbia&eyebrowType=defaultNatural&eyesType=default&facialHairType=beardLight&facialHairColor=brownDark&mouthType=vomit&skinColor=brown&topType=shortHairShortCurly&topColor=blue03\",\n    \"useImage\": false\n}"
+						},
+						"url": {
+							"raw": "{{server}}/users/my-profile",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"users",
+								"my-profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Image",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e280b698-eb2d-49cf-aa29-0b9312ffe960",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"image\": \"data:image/png;base64,......\"\n}"
+						},
+						"url": {
+							"raw": "{{server}}/users/my-profile/image",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"users",
+								"my-profile",
+								"image"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Roles",
+			"item": [
+				{
+					"name": "Roles Table",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"filter\": {\n        \"$match\": {\n            \"level\": {\n                \"$gt\": -1\n            },\n            \"isActive\": true\n        }\n    },\n    \"datatable\": {\n        \"columns\": [\n            {\n                \"data\": \"name\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"name\": \"\",\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"permissions\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"name\": \"\",\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"createdAt\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"name\": \"\",\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"level\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"name\": \"\",\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"type\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"name\": \"\",\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"_id\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"name\": \"\",\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            }\n        ],\n        \"order\": [\n            {\n                \"column\": 2,\n                \"dir\": \"desc\"\n            }\n        ],\n        \"start\": 0,\n        \"length\": 25,\n        \"search\": {\n            \"value\": \"\",\n            \"regex\": false\n        }\n    }\n}"
+						},
+						"url": {
+							"raw": "{{server}}/roles/table",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"roles",
+								"table"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ffa67b5e-01a5-4044-a5a4-b8d85232ec20",
+								"exec": [
+									"pm.environment.set(\"roleId\", pm.response.json().data._id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Admin3\",\n    \"permissions\": [\n        {\n            \"title\": \"Home\",\n            \"name\": \"home\",\n            \"requiresAccess\": false,\n            \"access\": \"admin\"\n        },\n        {\n            \"title\": \"User Profile\",\n            \"name\": \"userProfile\",\n            \"requiresAccess\": false,\n            \"access\": \"admin\"\n        },\n        {\n            \"title\": \"Site Configurations\",\n            \"name\": \"siteConfigurations\",\n            \"requiresAccess\": true,\n            \"access\": \"admin\"\n        },\n        {\n            \"title\": \"User Management\",\n            \"name\": \"users\",\n            \"requiresAccess\": false,\n            \"children\": [\n                {\n                    \"title\": \"Users Table\",\n                    \"name\": \"usersTable\",\n                    \"requiresAccess\": true,\n                    \"access\": \"admin\"\n                },\n                {\n                    \"title\": \"Add User\",\n                    \"name\": \"usersAdd\",\n                    \"requiresAccess\": true,\n                    \"access\": \"admin\"\n                },\n                {\n                    \"title\": \"Update User\",\n                    \"name\": \"usersEdit\",\n                    \"requiresAccess\": true,\n                    \"access\": \"admin\"\n                },\n                {\n                    \"title\": \"Pending Users\",\n                    \"name\": \"usersPending\",\n                    \"requiresAccess\": true,\n                    \"access\": \"admin\"\n                }\n            ],\n            \"access\": \"admin\"\n        },\n        {\n            \"title\": \"Users Table\",\n            \"name\": \"usersTable\",\n            \"requiresAccess\": true,\n            \"access\": \"admin\"\n        },\n        {\n            \"title\": \"Add User\",\n            \"name\": \"usersAdd\",\n            \"requiresAccess\": true,\n            \"access\": \"admin\"\n        },\n        {\n            \"title\": \"Update User\",\n            \"name\": \"usersEdit\",\n            \"requiresAccess\": true,\n            \"access\": \"admin\"\n        },\n        {\n            \"title\": \"Pending Users\",\n            \"name\": \"usersPending\",\n            \"requiresAccess\": true,\n            \"access\": \"admin\"\n        },\n        {\n            \"title\": \"Roles and Permissions\",\n            \"name\": \"roles\",\n            \"requiresAccess\": false,\n            \"children\": [\n                {\n                    \"title\": \"Roles Table\",\n                    \"name\": \"rolesTable\",\n                    \"requiresAccess\": true,\n                    \"access\": \"admin\"\n                },\n                {\n                    \"title\": \"Add Role\",\n                    \"name\": \"rolesAdd\",\n                    \"requiresAccess\": true,\n                    \"access\": \"admin\"\n                },\n                {\n                    \"title\": \"Update Role\",\n                    \"name\": \"rolesEdit\",\n                    \"requiresAccess\": true,\n                    \"access\": \"admin\"\n                }\n            ],\n            \"access\": \"admin\"\n        },\n        {\n            \"title\": \"Roles Table\",\n            \"name\": \"rolesTable\",\n            \"requiresAccess\": true,\n            \"access\": \"admin\"\n        },\n        {\n            \"title\": \"Add Role\",\n            \"name\": \"rolesAdd\",\n            \"requiresAccess\": true,\n            \"access\": \"admin\"\n        },\n        {\n            \"title\": \"Update Role\",\n            \"name\": \"rolesEdit\",\n            \"requiresAccess\": true,\n            \"access\": \"admin\"\n        },\n        {\n            \"title\": \"Feeds\",\n            \"name\": \"feeds\",\n            \"requiresAccess\": false,\n            \"children\": [\n                {\n                    \"title\": \"Feeds Table\",\n                    \"name\": \"feedsTable\",\n                    \"requiresAccess\": true,\n                    \"access\": \"admin\"\n                },\n                {\n                    \"title\": \"Add Feed\",\n                    \"name\": \"feedsAdd\",\n                    \"requiresAccess\": true,\n                    \"access\": \"admin\"\n                },\n                {\n                    \"title\": \"Update Feed\",\n                    \"name\": \"feedsEdit\",\n                    \"requiresAccess\": true,\n                    \"access\": \"admin\"\n                }\n            ],\n            \"access\": \"admin\"\n        },\n        {\n            \"title\": \"Feeds Table\",\n            \"name\": \"feedsTable\",\n            \"requiresAccess\": true,\n            \"access\": \"admin\"\n        },\n        {\n            \"title\": \"Add Feed\",\n            \"name\": \"feedsAdd\",\n            \"requiresAccess\": true,\n            \"access\": \"admin\"\n        },\n        {\n            \"title\": \"Update Feed\",\n            \"name\": \"feedsEdit\",\n            \"requiresAccess\": true,\n            \"access\": \"admin\"\n        },\n        {\n            \"title\": \"Logs\",\n            \"name\": \"logs\",\n            \"requiresAccess\": false,\n            \"children\": [\n                {\n                    \"title\": \"Account Logs\",\n                    \"name\": \"accountLogs\",\n                    \"requiresAccess\": false,\n                    \"access\": \"admin\"\n                }\n            ],\n            \"access\": \"admin\"\n        },\n        {\n            \"title\": \"Account Logs\",\n            \"name\": \"accountLogs\",\n            \"requiresAccess\": false,\n            \"access\": \"admin\"\n        },\n        {\n            \"title\": \"Assets\",\n            \"name\": \"assets\",\n            \"requiresAccess\": false,\n            \"children\": [\n                {\n                    \"title\": \"Assets Table\",\n                    \"name\": \"assetsTable\",\n                    \"requiresAccess\": true,\n                    \"access\": \"admin\"\n                }\n            ],\n            \"access\": \"admin\"\n        },\n        {\n            \"title\": \"Assets Table\",\n            \"name\": \"assetsTable\",\n            \"requiresAccess\": true,\n            \"access\": \"admin\"\n        },\n        {\n            \"title\": \"Documentations\",\n            \"name\": \"documentations\",\n            \"requiresAccess\": false,\n            \"children\": [\n                {\n                    \"title\": \"Quick Start\",\n                    \"name\": \"docsQuickStart\",\n                    \"requiresAccess\": false,\n                    \"access\": \"admin\"\n                },\n                {\n                    \"title\": \"DataTable\",\n                    \"name\": \"docsDataTable\",\n                    \"requiresAccess\": false,\n                    \"access\": \"admin\"\n                },\n                {\n                    \"title\": \"Avatar Generator\",\n                    \"name\": \"docsAvatarGenerator\",\n                    \"requiresAccess\": false,\n                    \"access\": \"admin\"\n                },\n                {\n                    \"title\": \"Photo Cropper\",\n                    \"name\": \"docsPhotoCropper\",\n                    \"requiresAccess\": false,\n                    \"access\": \"admin\"\n                },\n                {\n                    \"title\": \"Multi Upload\",\n                    \"name\": \"docsMultiUpload\",\n                    \"requiresAccess\": false,\n                    \"access\": \"admin\"\n                },\n                {\n                    \"title\": \"Form Fields\",\n                    \"name\": \"docsFormFields\",\n                    \"requiresAccess\": false,\n                    \"access\": \"admin\"\n                },\n                {\n                    \"title\": \"Location Picker\",\n                    \"name\": \"docsLocationPicker\",\n                    \"requiresAccess\": false,\n                    \"access\": \"admin\"\n                }\n            ],\n            \"access\": \"admin\"\n        },\n        {\n            \"title\": \"Quick Start\",\n            \"name\": \"docsQuickStart\",\n            \"requiresAccess\": false,\n            \"access\": \"admin\"\n        },\n        {\n            \"title\": \"DataTable\",\n            \"name\": \"docsDataTable\",\n            \"requiresAccess\": false,\n            \"access\": \"admin\"\n        },\n        {\n            \"title\": \"Avatar Generator\",\n            \"name\": \"docsAvatarGenerator\",\n            \"requiresAccess\": false,\n            \"access\": \"admin\"\n        },\n        {\n            \"title\": \"Photo Cropper\",\n            \"name\": \"docsPhotoCropper\",\n            \"requiresAccess\": false,\n            \"access\": \"admin\"\n        },\n        {\n            \"title\": \"Multi Upload\",\n            \"name\": \"docsMultiUpload\",\n            \"requiresAccess\": false,\n            \"access\": \"admin\"\n        },\n        {\n            \"title\": \"Form Fields\",\n            \"name\": \"docsFormFields\",\n            \"requiresAccess\": false,\n            \"access\": \"admin\"\n        },\n        {\n            \"title\": \"Location Picker\",\n            \"name\": \"docsLocationPicker\",\n            \"requiresAccess\": false,\n            \"access\": \"admin\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{server}}/roles",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Role Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e280b698-eb2d-49cf-aa29-0b9312ffe960",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/roles/{{roleId}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"roles",
+								"{{roleId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ffa67b5e-01a5-4044-a5a4-b8d85232ec20",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"_id\": \"{{roleId}}\",\n    \"name\": \"Role Test\",\n    \"permissions\": [\n        {\n            \"title\": \"Home\",\n            \"name\": \"home\",\n            \"requiresAccess\": false,\n            \"access\": \"admin\"\n        },\n        {\n            \"title\": \"User Profile\",\n            \"name\": \"userProfile\",\n            \"requiresAccess\": false,\n            \"access\": \"admin\"\n        }\n    ],\n    \"level\": 0,\n    \"type\": \"user\",\n    \"isActive\": true\n}"
+						},
+						"url": {
+							"raw": "{{server}}/roles",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Archive/Activate Role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ffa67b5e-01a5-4044-a5a4-b8d85232ec20",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"_id\": \"{{roleId}}\",\n    \"isActive\": false\n}"
+						},
+						"url": {
+							"raw": "{{server}}/roles",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users by roleID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/roles/{{roleId}}/users",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"roles",
+								"{{roleId}}",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Settings",
+			"item": [
+				{
+					"name": "Get Settings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/settings",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Settings",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"general\": {\n        \"siteTitle\": \"Vaska\",\n        \"description\": \"description\"\n    },\n    \"timeAndRegion\": {\n        \"dateFormat\": \"DD/MM/YYYY\",\n        \"timeFormat\": \"24hr\",\n        \"timezone\": \"Japan\"\n    },\n    \"session\": {\n        \"value\": 24,\n        \"unit\": \"h\",\n        \"defaultRoleID\": \"5f1bf2a5ab6498033a92095c\"\n    },\n    \"contact\": {\n        \"address\": {\n            \"country\": 109,\n            \"state\": 1951,\n            \"city\": 24848,\n            \"streetName\": \"City\"\n        },\n        \"email\": \"agacatur@gmail.com\",\n        \"phone\": \"0812676434\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{server}}/settings",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"settings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Feeds",
+			"item": [
+				{
+					"name": "Get Feeds",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"datatable\": {\n        \"columns\": [\n            {\n                \"data\": \"title\",\n                \"name\": \"\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"caption\",\n                \"name\": \"\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"image\",\n                \"name\": \"\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"tags\",\n                \"name\": \"\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            }\n        ],\n        \"order\": [\n            {\n                \"column\": 0,\n                \"dir\": \"asc\"\n            }\n        ],\n        \"start\": 0,\n        \"length\": 5,\n        \"search\": {\n            \"value\": \"\",\n            \"regex\": false\n        }\n    },\n    \"filter\": {\n        \"$match\": {\n            \"isActive\": true\n        }\n    }\n}"
+						},
+						"url": {
+							"raw": "{{server}}/feeds/table",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"feeds",
+								"table"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Feed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "88a4ad22-d815-4c38-9cd4-39fed09f0883",
+								"exec": [
+									"pm.environment.set(\"feedId\", pm.response.json().data._id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Feed 2\",\n\t\"caption\": \"Test first Feed\",\n\t\"image\": \"\",\n\t\"tags\": [\"test\", \"first\"]\n}"
+						},
+						"url": {
+							"raw": "{{server}}/feeds",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"feeds"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Tags",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/feeds/all-tags",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"feeds",
+								"all-tags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Feed Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e280b698-eb2d-49cf-aa29-0b9312ffe960",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/feeds/{{feedId}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"feeds",
+								"{{feedId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Feed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ffa67b5e-01a5-4044-a5a4-b8d85232ec20",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"_id\": \"{{feedId}}\",\n    \"title\": \"Feed 2\",\n    \"caption\": \"Test second Feed\",\n    \"image\": \"\",\n    \"tags\": [\n        \"test\",\n        \"first\"\n    ],\n    \"isActive\": true\n}"
+						},
+						"url": {
+							"raw": "{{server}}/feeds",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"feeds"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Archive/Activate Feed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ffa67b5e-01a5-4044-a5a4-b8d85232ec20",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"_id\": \"{{feedId}}\",\n    \"isActive\": false\n}"
+						},
+						"url": {
+							"raw": "{{server}}/feeds",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"feeds"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Upload",
+			"item": [
+				{
+					"name": "Upload File",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f115d71d-1e71-4bee-96f8-ed8fd260e711",
+								"exec": [
+									"pm.environment.set(\"assetId\", pm.response.json().data._id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/aga/Documents/images/kuchiki_toko-wallpaper-2560x1440.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{server}}/assets/uploads",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"assets",
+								"uploads"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Files",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"datatable\": {\n        \"columns\": [\n            {\n                \"data\": \"originalname\",\n                \"name\": \"\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"user.username\",\n                \"name\": \"\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"userID\",\n                \"name\": \"\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"createdAt\",\n                \"name\": \"\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"_id\",\n                \"name\": \"\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            }\n        ],\n        \"order\": [\n            {\n                \"column\": 0,\n                \"dir\": \"asc\"\n            }\n        ],\n        \"start\": 0,\n        \"length\": 5,\n        \"search\": {\n            \"value\": \"\",\n            \"regex\": false\n        }\n    }\n}"
+						},
+						"url": {
+							"raw": "{{server}}/assets/table",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"assets",
+								"table"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete File",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/assets/{{assetId}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"assets",
+								"{{assetId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Logs",
+			"item": [
+				{
+					"name": "Account Logs",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "bf7f2418-aef1-41a9-becc-9c04c2753aec",
+								"exec": [
+									"var endDate = new Date();",
+									"var startDate = new Date(new Date().setDate(new Date().getDate() - 30));",
+									"",
+									"pm.environment.set(\"endDate\", (endDate.getTime()/1000) * 1000);",
+									"pm.environment.set(\"startDate\", (startDate.getTime()/1000) * 1000);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"filter\": {\n        \"$match\": {\n            \"createdAt\": {\n                \"$gt\": {\n                    \"$date\": {{startDate}}\n                },\n                \"$lt\": {\n                    \"$date\": {{endDate}}\n                }\n            }\n        }\n    },\n    \"datatable\": {\n        \"columns\": [\n            {\n                \"data\": \"username\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"name\": \"\",\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"ip\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"name\": \"\",\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"comment\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"name\": \"\",\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"createdAt\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"name\": \"\",\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            },\n            {\n                \"data\": \"_id\",\n                \"searchable\": true,\n                \"orderable\": true,\n                \"name\": \"\",\n                \"search\": {\n                    \"value\": \"\",\n                    \"regex\": false\n                }\n            }\n        ],\n        \"order\": [\n            {\n                \"column\": 3,\n                \"dir\": \"desc\"\n            }\n        ],\n        \"start\": 0,\n        \"length\": 25,\n        \"search\": {\n            \"value\": \"\",\n            \"regex\": false\n        }\n    }\n}"
+						},
+						"url": {
+							"raw": "{{server}}/logs/users/table",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"logs",
+								"users",
+								"table"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "65afae8a-4d97-40e6-a056-496280b82907",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "842e199b-6edb-46e4-8454-c4987760905b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

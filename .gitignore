@@ -1,0 +1,28 @@
+package-lock.json
+node_modules/
+
+# Blacklist public/ assets and images
+src/public/assets/*
+src/public/images/*
+
+# Whitelist README.md to keep the folder
+!src/public/assets/README.md
+!src/public/images/README.md
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

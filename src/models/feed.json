@@ -1,0 +1,73 @@
+{
+    "filter": {
+        "$match": {
+            "isActive": true
+        }
+    },
+    "datatable": {
+        "columns": [
+            {
+                "data": "title",
+                "searchable": true,
+                "orderable": true,
+                "name": "",
+                "search": {
+                    "value": "",
+                    "regex": false
+                }
+            },
+            {
+                "data": "caption",
+                "searchable": true,
+                "orderable": true,
+                "name": "",
+                "search": {
+                    "value": "",
+                    "regex": false
+                }
+            },
+            {
+                "data": "tags",
+                "searchable": true,
+                "orderable": true,
+                "name": "",
+                "search": {
+                    "value": "",
+                    "regex": false
+                }
+            },
+            {
+                "data": "createdAt",
+                "searchable": true,
+                "orderable": true,
+                "name": "",
+                "search": {
+                    "value": "",
+                    "regex": false
+                }
+            },
+            {
+                "data": "_id",
+                "searchable": true,
+                "orderable": true,
+                "name": "",
+                "search": {
+                    "value": "",
+                    "regex": false
+                }
+            }
+        ],
+        "order": [
+            {
+                "column": 3,
+                "dir": "desc"
+            }
+        ],
+        "start": 0,
+        "length": 25,
+        "search": {
+            "value": "",
+            "regex": false
+        }
+    }
+}

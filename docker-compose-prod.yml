@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  server-prod:
+    container_name: server-prod
+    build:
+      context: .
+      dockerfile: ./deploy/dockerfiles/Dockerfile
+    volumes:
+      - '.:/app/server'
+      - '/app/server/node_modules'
+    ports:
+      - '5000:5000'

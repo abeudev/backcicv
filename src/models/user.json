@@ -1,0 +1,114 @@
+{
+    "filter": {
+        "$match": {
+            "isPending": false,
+            "isActive": true
+        }
+    },
+    "datatable": {
+        "columns": [
+            {
+                "data": "firstName",
+                "searchable": true,
+                "orderable": true,
+                "name": "",
+                "search": {
+                    "value": "",
+                    "regex": false
+                }
+            },
+            {
+                "data": "username",
+                "searchable": true,
+                "orderable": true,
+                "name": "",
+                "search": {
+                    "value": "",
+                    "regex": false
+                }
+            },
+            {
+                "data": "email",
+                "searchable": true,
+                "orderable": true,
+                "name": "",
+                "search": {
+                    "value": "",
+                    "regex": false
+                }
+            },
+            {
+                "data": "role.name",
+                "searchable": true,
+                "orderable": true,
+                "name": "",
+                "search": {
+                    "value": "",
+                    "regex": false
+                }
+            },
+            {
+                "data": "createdAt",
+                "searchable": true,
+                "orderable": true,
+                "name": "",
+                "search": {
+                    "value": "",
+                    "regex": false
+                }
+            },
+            {
+                "data": "role.level",
+                "searchable": true,
+                "orderable": true,
+                "name": "",
+                "search": {
+                    "value": "",
+                    "regex": false
+                }
+            },
+            {
+                "data": "role._id",
+                "searchable": true,
+                "orderable": true,
+                "name": "",
+                "search": {
+                    "value": "",
+                    "regex": false
+                }
+            },
+            {
+                "data": "lastName",
+                "searchable": true,
+                "orderable": true,
+                "name": "",
+                "search": {
+                    "value": "",
+                    "regex": false
+                }
+            },
+            {
+                "data": "_id",
+                "searchable": true,
+                "orderable": true,
+                "name": "",
+                "search": {
+                    "value": "",
+                    "regex": false
+                }
+            }
+        ],
+        "order": [
+            {
+                "column": 4,
+                "dir": "desc"
+            }
+        ],
+        "start": 0,
+        "length": 25,
+        "search": {
+            "value": "",
+            "regex": false
+        }
+    }
+}
